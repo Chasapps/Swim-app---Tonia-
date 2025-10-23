@@ -91,5 +91,6 @@ function exitToSplash(){
 }
 splash.addEventListener('click',openApp);
 exitBtn.addEventListener('click',exitToSplash);
+window.addEventListener('message', (e)=>{ try{ if(e && e.data && e.data.type==='WADS_EXIT'){ exitToSplash(); } }catch(_){} });
 </script>
 </body>

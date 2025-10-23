@@ -141,3 +141,17 @@ function init(){
   updateCount();
 }
 document.addEventListener('DOMContentLoaded', init);
+
+
+// Exit button: return to splash (index.html) or signal parent
+document.addEventListener('DOMContentLoaded', () => {
+  const exitBtn = document.getElementById('exitBtn');
+  if (exitBtn) {
+    exitBtn.addEventListener('click', () => {
+      try { window.parent && window.parent.postMessage && window.parent.postMessage({type:'WADS_EXIT'}, '*'); } catch (e) {}
+      try { window.top && window.top.location && (window.top.location.href = 'index.html'); } catch (e) {
+        try { location.href = 'index.html'; } catch(e2) {}
+      }
+    });
+  }
+});
